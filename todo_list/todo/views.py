@@ -38,6 +38,16 @@ class TaskUpdate(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "The task was update successfully.")
         return super(TaskUpdate,self).form_valid(form)
+
+# XÓA PHẦN TỬ TRONG DANH SÁCH
+class TaskDelete(DeleteView):
+    model = Task
+    context_object_name = 'task'
+    success_url = reverse_lazy('tasks')
+
+    def form_valid(self, form):
+        messages.success(self.request, "The task was deleted successfully.")
+        return super(TaskDelete,self).form_valid(form)
     
 def home(request):
     return render(request, 'home.html')
