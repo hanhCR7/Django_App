@@ -70,13 +70,14 @@ h2 {
 }
 
 a {
-  color: var(--color-primary);
-  text-decoration: none;
+  text-decoration: none; 
+  color: var(--color-primary); 
 }
 
-a:hover {
-  text-decoration: none;
+a:hover, a:focus {
+  text-decoration: none; 
 }
+
 
 .container {
   max-width: 960px;
@@ -189,6 +190,21 @@ textarea {
 textarea {
   max-height: 7rem;
 }
+
+.input-group {
+  position: relative;
+}
+
+.input-group-text {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 
 /* Task list */
 .tasks {
