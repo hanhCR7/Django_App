@@ -1,14 +1,14 @@
 {%load static %}
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <script src="{% static 'js/main.js' %}" defer></script>
         <title>Todo List</title>
     </head>
+
     <body>
         <header class="header">
             <div class="container">
@@ -18,27 +18,27 @@
 	                {% if request.user.is_authenticated %}
 	    	              	<a href="{% url 'tasks' %}"><i class="bi bi-list-task"></i> My Tasks</a>
 	    	              	<a href="{% url 'task-create' %}"><i class="bi bi-plus-circle"></i> Create Task</a>
-		                	<a href="#">Hi {{request.user | title}}</a>
-	    	                <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-outline">Logout</button>
-                            </form>
+		                <a href="#">Hi {{request.user | title}}</a>
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline">Logout</button>
+                        </form>
 	                {% else %}
-							<a href="{% url 'login' %}" class="btn btn-outline">Login</a>
-	            	        <a href="#" class="btn btn-primary">Join Now</a>
+				<a href="{% url 'login' %}" class="btn btn-outline">Login</a>
+	            	        <a href="{% url 'register' %}" class="btn btn-primary">Join Now</a>
 	                {% endif %}
-	              </nav>
+	             </nav>
             </div>
         </header>
         <main>
             <div class="container">
             	{% if messages %}
-				{% for message in messages %}
-					<div class="alert alert-{{message.tags}}">
-					       {{message}}
-					     </div>
-					   {% endfor %}
-				{% endif %}
+			{% for message in messages %}
+			<div class="alert alert-{{message.tags}}">
+			       {{message}}
+		        </div>
+		        {% endfor %}
+		{% endif %}
             
              {%block content %}
              {%endblock content%}
@@ -46,8 +46,9 @@
         </main>
         <footer class="footer">
             <div class="container">
-				<p>© Copyright {% now "Y" %} by <a href="https://www.pythontutorial.net">Python Tutorial</a></p>
+                <p>© Copyright {% now "Y" %} by <a href="https://www.pythontutorial.net">Python Tutorial</a></p>
             </div>
         </footer>
     </body>
+
 </html>

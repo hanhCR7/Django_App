@@ -15,10 +15,21 @@ class TaskList(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        return context
+    
+
 # XEM CHI TIẾT CÁC PHẦN TỬ TRONG DANH SÁCH
 class TaskDetail(DetailView):
     model = Task
     context_object_name = 'task'
+
+    def get_queryset(self):
+        base_qs = super(TaskDetail, self).get_queryset()
+        return base_qs.filter(user=self.request.user)
+    
 
 # THÊM MỚI PHẦN TỬ VÀO DANH SÁCH
 class TaskCreate(CreateView):
@@ -30,6 +41,7 @@ class TaskCreate(CreateView):
         form.instance.user = self.request.user
         messages.success(self.request, "The task was created successfully.")
         return super(TaskCreate,self).form_valid(form)
+    
 #  CẬP NHẬT PHẦN TỬ TRONG DANH SÁCH
 class TaskUpdate(UpdateView):
     model = Task
@@ -40,6 +52,9 @@ class TaskUpdate(UpdateView):
         messages.success(self.request, "The task was update successfully.")
         return super(TaskUpdate,self).form_valid(form)
 
+    def get_queryset(self):
+        base_qs = super(TaskUpdate, self).get_queryset()
+        return base_qs.filter(user=self.request.user)
 # XÓA PHẦN TỬ TRONG DANH SÁCH
 class TaskDelete(DeleteView):
     model = Task
@@ -49,6 +64,10 @@ class TaskDelete(DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "The task was deleted successfully.")
         return super(TaskDelete,self).form_valid(form)
+    
+    def get_queryset(self):
+        base_qs = super(TaskDelete, self).get_queryset()
+        return base_qs.filter(user=self.request.user)
     
 def home(request):
     return render(request, 'home.html')
