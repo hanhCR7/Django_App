@@ -69,5 +69,7 @@ class TaskDelete(DeleteView):
         base_qs = super(TaskDelete, self).get_queryset()
         return base_qs.filter(user=self.request.user)
     
+
+    
 def home(request):
     return render(request, 'home.html')

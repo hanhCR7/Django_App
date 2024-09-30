@@ -13,9 +13,8 @@
   --color-info: #02a2b9;
   --color-success: #1ba345;
   --color-input: #00d1b2;
-  --border-radius: 5px;
+   --border-radius: 5px;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -41,9 +40,10 @@ textarea {
 input[type='text']:focus,
 input[type='email']:focus,
 input[type='password']:focus,
+input[type='file']:focus,
 textarea:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.125rem rgb(0 209 178 / 25%);
+  box-shadow:  0 0 0 0.125rem rgb(0 209 178 / 25%);
   border: solid 1px var(--color-input);
 }
 
@@ -51,7 +51,6 @@ textarea:focus {
   outline: 0;
   box-shadow: 0 0 0 0.125rem rgb(238, 57, 76, 25%);
 }
-
 body {
   font-family: 'Dosis', sans-serif;
   font-size: 1rem;
@@ -64,20 +63,17 @@ h1 {
   font-size: 2rem;
   line-height: 1.5;
 }
-
 h2 {
   font-size: 1.4rem;
 }
 
 a {
-  text-decoration: none; 
-  color: var(--color-primary); 
+  color: var(--color-primary);
+  text-decoration: none;
 }
-
-a:hover, a:focus {
-  text-decoration: none; 
+a:hover {
+  text-decoration: underline;
 }
-
 
 .container {
   max-width: 960px;
@@ -92,21 +88,25 @@ a:hover, a:focus {
 .header .container {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap:1rem;
+  
 }
 
 .nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  flex-basis: 100%;
+	display:flex;
+	gap:1rem;
+	align-items: center;
+	justify-content: center;
+	flex-basis: 100%;
 }
 
+
+
 .nav a:nth-last-child(2) {
-  margin-left: auto;
-  font-weight: bold;
-}
+	margin-left: auto;
+	font-weight: bold;
+} 
+
 
 .logo {
   padding: 0.5rem;
@@ -116,29 +116,24 @@ a:hover, a:focus {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 .logo:hover {
   text-decoration: none;
 }
-
 /* feature */
 .feature {
   display: flex;
   justify-content: space-between;
 }
-
 .feature-content {
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .feature-content .cta {
   margin-top: 1rem;
   align-self: flex-start;
 }
-
 .feature-image {
   width: 50%;
   height: auto;
@@ -154,6 +149,7 @@ a:hover, a:focus {
   min-width: 400px;
 }
 
+/* form */
 form > * {
   display: block;
   margin-bottom: 0.5rem;
@@ -180,6 +176,7 @@ hr {
 input[type='text'],
 input[type='email'],
 input[type='password'],
+input[type='file'],
 textarea {
   border-radius: var(--border-radius);
   border: solid 1px var(--color-gray);
@@ -191,28 +188,12 @@ textarea {
   max-height: 7rem;
 }
 
-.input-group {
-  position: relative;
-}
-
-.input-group-text {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-
 /* Task list */
+
 .tasks {
   list-style: none;
   width: 100%;
-  max-width: 500px;
-  margin-top: 1rem;
-  padding: 0;
+  max-width: 450px;
 }
 
 .tasks li {
@@ -220,20 +201,11 @@ textarea {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: var(--color-light);
-  border: solid 1px var(--color-gray);
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
-  transition: background 0.3s ease;
+  border-bottom: solid 1px var(--color-dark);
+  padding: 0.5rem 0;
 }
-
-.tasks li:hover {
-  background-color: #eaeaea;
-}
-
 .tasks li:last-of-type {
-  margin-bottom: 0;
+  border-bottom: none;
 }
 
 .task-controls {
@@ -244,26 +216,26 @@ textarea {
 
 .task-controls a {
   color: var(--color-dark);
-  font-size: 1.2rem;
-  transition: transform 0.2s, color 0.2s;
 }
 
-.task-controls a:hover {
-  color: var(--color-primary);
-  transform: scale(1.2);
-}
+/* task detail */
 
 .task {
   margin-bottom: auto;
-  font-weight: 500;
 }
 
 .badge {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   padding: 0.25rem 1rem;
   color: var(--color-white);
   border-radius: 2rem;
   align-self: flex-start;
+}
+
+.avatar {
+	display:block;
+	margin:0 auto;
+	max-width:150px;
 }
 
 .badge-completed {
@@ -276,13 +248,11 @@ textarea {
 
 .completed {
   text-decoration: line-through;
-  opacity: 0.7;
 }
 
 .completed:hover {
   text-decoration: line-through;
 }
-
 /* footer */
 .footer p {
   text-align: center;
@@ -310,7 +280,6 @@ textarea {
 .btn:hover {
   text-decoration: none;
 }
-
 .btn-outline {
   border: solid 1px var(--color-primary);
 }
@@ -326,7 +295,6 @@ textarea {
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
 }
-
 .alert-error {
   background-color: var(--color-error);
   color: var(--color-light);
@@ -368,7 +336,7 @@ textarea {
   min-height: 70vh;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .header > .container {
     display: flex;
     flex-direction: column;
@@ -401,3 +369,4 @@ textarea {
     align-self: center;
   }
 }
+
